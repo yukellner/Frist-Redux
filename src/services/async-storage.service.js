@@ -20,7 +20,7 @@ function query(entityType, delay = 1200) {
             resolve(entities)
         }, delay)
     })
-    // return Promise.resolve(entities)
+    //  return Promise.resolve(entities)
 }
 
 
@@ -33,6 +33,7 @@ function post(entityType, newEntity) {
     return query(entityType)
         .then(entities => {
             entities.push(newEntity)
+
             _save(entityType, entities)
             return newEntity
         })

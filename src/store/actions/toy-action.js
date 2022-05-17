@@ -19,14 +19,14 @@ export function loadToys() { // Action Creator
  }
 
  export function removeToy(toyId) { // Action Creator
-    return (dispatchPlease, getTheState) => {
+    return (dispatch, getTheState) => {
         console.log('THE STATE IS', getTheState())
         toyService.remove(toyId)
             .then(() => {
                 console.log('Deleted Succesfully!');
                 // After async operation is done - dispatch an action to the reducer
-                dispatchPlease({
-                    type: 'REMOVE_CAR',
+                dispatch({
+                    type: 'REMOVE_TOY',
                     toyId
                 })
                 // showSuccessMsg('Toy removed')
@@ -39,7 +39,7 @@ export function loadToys() { // Action Creator
  }
  export function saveToy(toy) { // Action Creator
     return dispatch => {
-        const actionType = (toy._id) ? 'UPDATE_CAR' : 'ADD_CAR'
+        const actionType = (toy._id) ? 'UPDATE_TOY' : 'ADD_TOY'
         toyService.save(toy)
             .then(savedToy => {
                 dispatch({ type: actionType, toy: savedToy })

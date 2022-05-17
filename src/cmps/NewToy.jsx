@@ -6,18 +6,52 @@ import { Component } from 'react'
 import { removeToy } from '../store/actions/toy-action.js'
 import { loadToys } from '../store/actions/toy-action.js'
 import { saveToy } from '../store/actions/toy-action.js'
-import { userService } from '../services/user.service.js'
-
 import { toyService } from '../services/toy-service.js'
+import { utilService } from '../services/util.service.js'
 
 // import { carService } from '../services/car.service.js'
 // import { showSuccessMsg } from '../services/event-bus.service.js'
 // import { loadCars, removeCar, saveCar } from '../store/car.action.js'
 // import { addToCart } from '../store/cart.action.js'
 
-class _ToyPreview extends Component {
+class _NewToy extends Component {
 
-    
+    state = {
+
+        toy: {
+
+            name: null,
+            price: null,
+            labels: [],
+            createdAt: 1631031801011,
+            inStock: false,
+            reviews: []
+        }
+    }
+
+    onHandleChange = ({target}) => {
+        const value = target.value
+        const field = target.name
+
+        this.setState({toy: {...this.state.toy, [field]: value}})
+        console.log('state',this.state)
+
+    }
+
+    onSave = (event) => {
+        event.preventDefault()
+
+        const toy = this.state.toy
+        console.log('jusst toy',toy)
+        this.props.saveToy(toy)
+        // this.props.loadToys()
+
+
+    }
+
+
+
+
 
     componentDidMount() {
 
@@ -28,7 +62,8 @@ class _ToyPreview extends Component {
 
     onRemoveToy = (toyId) => {
         this.props.removeToy(toyId)
-
+        this.props.loadToys()
+        
 
 
 
@@ -48,33 +83,17 @@ class _ToyPreview extends Component {
 
     render() {
 
-        if(!this.props.toys) return <h1>...loading</h1> 
         const { toys } = this.props
         return (
-            <div className='toys-view'>
+            <div className='new-toy'>
+                <form type='onSubmit'>
+                    <input type="text" name='name' onChange={this.onHandleChange} placeholder='toy name' />
+                    <input type="text" name='price' onChange={this.onHandleChange} placeholder='toy price' />
+                    <button onClick={this.onSave} >save</button>
 
-                
 
-                {toys.map(toy =>
-                    <li className="car-preview" key={toy._id}>
-                        <h4>{toy.name}</h4>
-                        <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-                        {/* <p>Owner: <span>{car.owner && car.owner.fullname}</span></p> */}
-                        <div >
-                            <button onClick={() => {
-                                this.onRemoveToy(toy._id)
-                            }}>x</button>
-                            <button onClick={() => {
-                                this.onEditToy(toy)
-                            }}>Edit</button>
-                        </div>
-                        {<button onClick={() => this.onAddReview(toy)}>add review</button>}
-                        {/* <button className="buy" onClick={() => {
-                            this.onAddToy(toy)
-                        }}>Add to Cart</button> */}
+                </form>
 
-                    </li>)
-                }
             </div>
 
 
@@ -99,8 +118,8 @@ const mapDispatchToProps = {
 }
 
 
-export const ToyPreview = connect(
+export const NewToy = connect(
     mapStateToProps,
     mapDispatchToProps
 
-)(_ToyPreview)
+)(_NewToy)

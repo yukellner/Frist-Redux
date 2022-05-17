@@ -1,0 +1,10 @@
+html { 
+    font-family: Bahnschrift, sans-serif; 
+    // color: $clr3;
+    line-height: 1.8;
+    line-height: lh(26px);
+ 
+    @media (max-width: 1300px) {
+        font-size: 13px;
+    }
+ }

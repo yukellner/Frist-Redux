@@ -4,15 +4,16 @@ import { Routes, Route, Link } from "react-router-dom";
 import {inc} from './store/actions/counter.action'
 import logo from './logo.svg';
 import {Home} from './pages/Home.jsx'
+import {About} from './pages/About.jsx'
 
-// import '../src/style/styles.scss'
+import '../src/style/styles.scss'
 
 
 function _App(props) {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Mister-Toy</h1>
+        {/* <h1>Mister-Toy</h1>
         <h3>Status: {props.status}</h3>
         <h2>
           Count {props.count}
@@ -20,7 +21,7 @@ function _App(props) {
             props.inc()
           }}>+</button>
         </h2>
-        <img src={logo} className="app-logo" alt="logo" />
+        <img src={logo} className="app-logo" alt="logo" /> */}
         <nav>
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
@@ -39,23 +40,23 @@ function _App(props) {
 
 
 
-function About() {
-  return (
-    <>
-      <main>
-        <h2>Who are we?</h2>
+// function About() {
+//   return (
+//     <>
+//       <main>
+//         <h2>Who are we?</h2>
         
-        <p>
-          That feels like an existential question, don't you
-          think?
-        </p>
-      </main>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-    </>
-  );
-}
+//         <p>
+//           That feels like an existential question, don't you
+//           think?
+//         </p>
+//       </main>
+//       <nav>
+//         <Link to="/">Home</Link>
+//       </nav>
+//     </>
+//   );
+// }
 
 
 

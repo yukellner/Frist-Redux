@@ -1,17 +1,25 @@
+import { httpService } from './http.service.js'
 import { storageService } from './async-storage.service.js'
-
 const STORAGE_KEY = 'userDB'
 const STORAGE_KEY_LOGGEDIN = 'loggedinUser'
+
 
 export const userService = {
     login,
     logout,
     signup,
     getLoggedinUser,
-    updateBalance
+    updateBalance,
+    getUsers
 }
 
 window.us = userService
+
+
+function getUsers() {
+    // return storageService.query('user')
+    return httpService.get(`user`)
+}
 
 function login(credentials) {
     return storageService.query(STORAGE_KEY).then(users => {

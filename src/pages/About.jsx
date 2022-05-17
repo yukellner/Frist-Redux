@@ -10,17 +10,18 @@ import { loadToys } from '../store/actions/toy-action'
 import { saveToy } from '../store/actions/toy-action'
 import { ToyPreview } from '../cmps/ToyPreview.jsx'
 import { NewToy } from '../cmps/NewToy.jsx'
+import { MapCmp } from '../cmps/MapCmp.jsx'
 
 // import { addToToy } from '../store/actions/toy.action.js'
 
 
-class _Home extends Component {
+class _About extends Component {
 
     state = {
         addStyle: { visibility: 'hidden' }
     }
 
-    onAddToyForm = () => {
+    onAddToy = () => {
         this.setState({ addStyle: { visibility: 'visible' } })
 
     }
@@ -33,7 +34,7 @@ class _Home extends Component {
     }
 
 
-    // onAddToyForm = () => {
+    // onAddToy = () => {
     //     const toy = toyService.getEmptytoy();
     //     this.props.saveToy(toy)
     //     this.props.loadToys()
@@ -57,16 +58,19 @@ class _Home extends Component {
         return (
             <div>
                 {/* {!this.props.loadToys() && <div>loading</div>} */}
-                <h3>Toys App</h3>
-                <main >
-                    <button onClick={this.onAddToyForm}>Add Toy ⛐</button>
+                <h3>About</h3>
+                <MapCmp/>
+
+
+                {/* <main >
+                    <button onClick={this.onAddToy}>Add Toy ⛐</button>
                     <div style={this.state.addStyle}>
                         <NewToy />
                     </div>
                     <ul className="toy-list">
                         <ToyPreview />
                     </ul>
-                </main>
+                </main> */}
             </div>
         )
     }
@@ -87,8 +91,8 @@ const mapDispatchToProps = {
 }
 
 
-export const Home = connect(
+export const About = connect(
     mapStateToProps,
     mapDispatchToProps
 
-)(_Home)
+)(_About)
